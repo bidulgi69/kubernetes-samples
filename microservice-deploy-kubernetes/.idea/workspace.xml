@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce3c6c13-6934-441d-a8de-56acb059e901" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/routes/composite/ProductAggregate.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/routes/composite/ProductCompositeService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/routes/event/Event.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/routes/product/Product.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/routes/product/ProductService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/routes/review/Review.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/src/main/kotlin/routes/review/ReviewService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/product-composite.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo/product-composite.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/product.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo/product.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-repo/review.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-repo/review.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/components/product-composite/config-repo/product-composite.yml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/components/product-composite/config-repo/product-composite.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/components/product/config-repo/product.yml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/components/product/config-repo/product.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helm/components/review/config-repo/review.yml" beforeDir="false" afterPath="$PROJECT_DIR$/helm/components/review/config-repo/review.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -365,7 +365,7 @@
       <workItem from="1659337271466" duration="6193000" />
       <workItem from="1659426314581" duration="1181000" />
       <workItem from="1659427632560" duration="3465000" />
-      <workItem from="1659436560998" duration="4970000" />
+      <workItem from="1659436560998" duration="7746000" />
     </task>
     <servers />
   </component>
