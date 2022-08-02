@@ -1,0 +1,73 @@
+version: "3.9"
+
+services:
+  product:
+    build: microservices/product-service
+    image: dove-kube/product-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker,kafka
+      - SPRING_CONFIG_LOCATION=file:/config-repo/application.yml,file:/config-repo/product.yml
+    volumes:
+      - $PWD/config-repo:/config-repo
+    depends_on:
+      - kafka
+      - mongodb-0
+
+  review:
+    build: microservices/review-service
+    image: dove-kube/review-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker,kafka
+      - SPRING_CONFIG_LOCATION=file:/config-repo/application.yml,file:/config-repo/review.yml
+    volumes:
+      - $PWD/config-repo:/config-repo
+    depends_on:
+      - kafka
+      - mongodb-1
+
+  product-composite:
+    build: microservices/product-composite-service
+    ports:
+      - "8443:80"
+    image: dove-kube/product-composite-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker,kafka
+      - SPRING_CONFIG_LOCATION=file:/config-repo/application.yml,file:/config-repo/product-composite.yml
+    volumes:
+      - $PWD/config-repo:/config-repo
+    depends_on:
+      - kafka
+
+  mongodb-0:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+
+  mongodb-1:
+    image: mongo
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=172.17.0.1
+      - KAFKA_ADVERTISED_PORT=9092
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=zookeeper

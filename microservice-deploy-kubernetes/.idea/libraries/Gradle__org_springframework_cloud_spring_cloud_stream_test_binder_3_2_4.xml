@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.springframework.cloud:spring-cloud-stream:test-binder:3.2.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-stream/3.2.4/8db24ff7869544d5982965b743f9bd36a3fceffa/spring-cloud-stream-3.2.4-test-binder.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.cloud/spring-cloud-stream/3.2.4/5199ea5e491d7ea05f50520a1a6ae53e4c4a8dd1/spring-cloud-stream-3.2.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

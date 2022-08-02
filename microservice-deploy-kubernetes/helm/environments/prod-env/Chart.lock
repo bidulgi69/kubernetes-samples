@@ -1,0 +1,15 @@
+dependencies:
+- name: shared
+  repository: file://../../shared
+  version: 1.0.0
+- name: product
+  repository: file://../../components/product
+  version: 1.0.0
+- name: review
+  repository: file://../../components/review
+  version: 1.0.0
+- name: product-composite
+  repository: file://../../components/product-composite
+  version: 1.0.0
+digest: sha256:d09318f9274db7a1e04617900c12f4c8db59c798a11ced97c2fe5f33149b42cc
+generated: "2022-08-02T20:21:17.763036+09:00"

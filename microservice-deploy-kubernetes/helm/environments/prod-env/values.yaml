@@ -1,0 +1,42 @@
+secrets:
+  mongodb-credentials:
+    SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE: admin
+    SPRING_DATA_MONGODB_USERNAME: root
+    SPRING_DATA_MONGODB_PASSWORD: root
+
+product:
+  image:
+    tag: latest
+  env:
+    SPRING_PROFILES_ACTIVE: "docker,prod"
+  envFromSecretRefs:
+    - mongodb-credentials
+  resources:
+    requests:
+      memory: 512Mi
+    limits:
+      memory: 1024Mi
+
+review:
+  image:
+    tag: latest
+  env:
+    SPRING_PROFILES_ACTIVE: "docker,prod"
+  envFromSecretRefs:
+    - mongodb-credentials
+  resources:
+    requests:
+      memory: 512Mi
+    limits:
+      memory: 1024Mi
+
+product-composite:
+  image:
+    tag: latest
+  env:
+    SPRING_PROFILES_ACTIVE: "docker,prod"
+  resources:
+    requests:
+      memory: 512Mi
+    limits:
+      memory: 1024Mi

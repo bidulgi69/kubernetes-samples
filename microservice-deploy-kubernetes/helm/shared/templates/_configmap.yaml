@@ -1,0 +1,12 @@
+{{- define "shared.configmap" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "shared.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "shared.name" . }}
+    helm.sh/chart: {{ include "shared.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+data:
+{{ (.Files.Glob "config-repo/*").AsConfig | indent 2 }}
+{{- end -}}

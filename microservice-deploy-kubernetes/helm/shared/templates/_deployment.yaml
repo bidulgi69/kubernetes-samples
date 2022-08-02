@@ -1,0 +1,69 @@
+{{- define "shared.deployment" -}}
+{{- $shared := dict "Values" .Values.shared -}}
+{{- $isolated := omit .Values "shared" -}}
+{{- $overrides := dict "Values" $isolated -}}
+{{- $others := omit . "Values" -}}
+{{- with merge $others $overrides $shared -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "shared.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "shared.name" . }}
+    helm.sh/chart: {{ include "shared.chart" . }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "shared.name" . }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "shared.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.image.args }}
+          args:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- if .Values.env }}
+          env:
+          {{- range $key, $val := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $val }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.envFromSecretRefs }}
+          envFrom:
+          {{- range .Values.envFromSecretRefs }}
+            - secretRef:
+                name: {{ . }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.livenessProbe_enabled }}
+          livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 12 }}
+          {{- end }}
+          {{- if .Values.readinessProbe_enabled }}
+          readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 12 }}
+          {{- end }}
+          ports:
+{{ toYaml .Values.ports | indent 12 }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      {{- if .Values.configmap.enabled }}
+          volumeMounts:
+            - name: {{ include "shared.fullname" . }}
+              mountPath: {{ .Values.configmap.volumeMounts.mountPath }}
+      volumes:
+        - name: {{ include "shared.fullname" . }}
+          configMap:
+            name: {{ include "shared.fullname" . }}
+      {{- end }}
+{{- end -}}
+{{- end -}}
