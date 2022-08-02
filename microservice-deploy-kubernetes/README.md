@@ -101,4 +101,4 @@ This project is an example of deploying a spring boot microservices to a Kuberne
     
 > Delete
 
-    curl -XDELETE http://localhost:8443/product-composite/1
+    curl -XDELETE http://ip:port/product-composite/1
